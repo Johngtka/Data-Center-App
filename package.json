@@ -8,6 +8,8 @@
     "prebuild": "standard-version",
     "postbuild": "git push --follow-tags",
     "watch": "ng build --watch --configuration development",
+    "format": "prettier --write ./**/*.{ts,json,html,css}",
+    "prepare": "husky install",
     "test": "ng test"
   },
   "private": true,
@@ -30,12 +32,14 @@
     "@angular/cli": "~15.1.3",
     "@angular/compiler-cli": "^15.1.0",
     "@types/jasmine": "~4.3.0",
+    "husky": "^8.0.3",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "lint-staged": "^13.2.2",
     "typescript": "~4.9.4"
   }
 }
