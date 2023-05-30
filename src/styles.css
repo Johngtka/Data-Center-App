@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+.loader-container {
+    position: relative;
+    min-height: 200px;
+    max-height: 400px;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.15);
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
