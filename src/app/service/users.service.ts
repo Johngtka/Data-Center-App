@@ -10,7 +10,7 @@ import { User } from '../models/user';
 })
 export class UsersService {
     constructor(private http: HttpClient) {}
-    private apiUrl = 'http://localhost/php_rest_api_local/';
+    private apiUrl = 'http://localhost/php_rest_api/';
 
     getUsers(): Observable<Array<User>> {
         return this.http.get<Array<User>>(`${this.apiUrl}`);
