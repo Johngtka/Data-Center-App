@@ -11,12 +11,14 @@ import { UsersService } from '../service/users.service';
 export class UsersComponent implements OnInit {
     constructor(private usersService: UsersService) {}
     dataSource!: User[];
-    displayedColumns: string[] = ['id', 'name', 'surname', 'dob'];
+    isLoadingResults = true;
+    displayedColumns: string[] = ['id', 'fullName', 'dob'];
 
     ngOnInit(): void {
         this.usersService.getUsers().subscribe({
             next: (data: Array<User>) => {
                 this.dataSource = data;
+                this.isLoadingResults = false;
             },
             error: (err) => {
                 console.log(err);
