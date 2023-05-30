@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { User } from '../models/user';
 import { UsersService } from '../service/users.service';
 
 @Component({
@@ -9,12 +10,13 @@ import { UsersService } from '../service/users.service';
 })
 export class UsersComponent implements OnInit {
     constructor(private usersService: UsersService) {}
-    items?: any[];
+    dataSource!: User[];
+    displayedColumns: string[] = ['id', 'name', 'surname', 'dob'];
 
-    ngOnInit() {
+    ngOnInit(): void {
         this.usersService.getUsers().subscribe({
-            next: (data) => {
-                this.items = data;
+            next: (data: Array<User>) => {
+                this.dataSource = data;
             },
             error: (err) => {
                 console.log(err);
