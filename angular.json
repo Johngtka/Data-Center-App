@@ -13,7 +13,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist/data-center-app",
+                        "outputPath": "dist/portfolio-app",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": ["zone.js"],
@@ -53,10 +53,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "Data-Center-App:build:production"
+                            "browserTarget": "Portfolio-app:build:production"
                         },
                         "development": {
-                            "browserTarget": "Data-Center-App:build:development"
+                            "browserTarget": "Portfolio-app:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -64,7 +64,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "Data-Center-App:build"
+                        "browserTarget": "Portfolio-app:build"
                     }
                 },
                 "test": {
