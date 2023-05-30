@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
     items?: any[];
 
     ngOnInit() {
-        this.usersService.getTest().subscribe({
+        this.usersService.getUsers().subscribe({
             next: (data) => {
                 this.items = data;
             },
