@@ -1,3 +1,4 @@
+<app-user-search *ngIf="hideTable"></app-user-search>
 <table
     *ngIf="!hideTable"
     mat-table
@@ -13,13 +14,17 @@
         </td>
     </ng-container>
     <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef>imie i nazwisko</th>
+        <th mat-header-cell *matHeaderCellDef>
+            {{ 'USERS_TABLE.FULLNAME' | translate }}
+        </th>
         <td mat-cell *matCellDef="let element">
             {{ element.fullName }}
         </td>
     </ng-container>
     <ng-container matColumnDef="dob">
-        <th mat-header-cell *matHeaderCellDef>data</th>
+        <th mat-header-cell *matHeaderCellDef>
+            {{ 'USERS_TABLE.DOB' | translate }}
+        </th>
         <td mat-cell *matCellDef="let element">
             {{ element.dob }}
         </td>

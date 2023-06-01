@@ -1,0 +1,28 @@
+<div>
+    <mat-form-field>
+        <input
+            matInput
+            placeholder="search.."
+            [matAutocomplete]="auto"
+            [formControl]="searchUserCtrl"
+        />
+        <button
+            *ngIf="searchUserCtrl.value"
+            matSuffix
+            mat-icon-button
+            aria-label="Clear"
+        >
+            <mat-icon>close</mat-icon>
+        </button>
+        <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngIf="isLoading" class="is-loading"
+                >{{ 'PATIENT_SEARCH.LOADING' | translate }}...</mat-option
+            >
+            <ng-container *ngIf="!isLoading">
+                <mat-option *ngFor="let user of filteredUsers" [value]="user">
+                    <span>{{ user.name + ' ' + user.surname }}</span>
+                </mat-option>
+            </ng-container>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>

@@ -28,11 +28,11 @@ export class UsersComponent implements OnInit {
     }
     @HostListener('document:keydown', ['$event'])
     searchUser(event: KeyboardEvent) {
-        if (event.key == 's') {
+        if (event.key == '/') {
             this.hideTable = true;
         }
-        if (event.key == 'Escape') {
-            this.hideTable = false;
-        }
+        // if (event.key == 'Escape') {
+        //     this.hideTable = false;
+        // }
     }
 }
