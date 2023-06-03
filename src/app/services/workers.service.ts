@@ -3,22 +3,22 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { User } from '../models/user';
+import { Worker } from '../models/worker';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root',
 })
-export class UsersService {
+export class WorkersService {
     constructor(private http: HttpClient) {}
     private apiUrl = environment.API_URL;
 
-    getUsers(): Observable<Array<User>> {
-        return this.http.get<Array<User>>(`${this.apiUrl}`);
+    getUsers(): Observable<Array<Worker>> {
+        return this.http.get<Array<Worker>>(`${this.apiUrl}`);
     }
 
-    searchUser(data: string): Observable<Array<User>> {
+    searchUser(data: string): Observable<Array<Worker>> {
         const body = { name: data };
-        return this.http.post<Array<User>>(`${this.apiUrl}`, body);
+        return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 }

@@ -7,18 +7,18 @@ import { filter } from 'rxjs';
 import { debounceTime } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs';
 
-import { User } from '../models/user';
-import { UsersService } from '../service/users.service';
+import { Worker } from '../models/worker';
+import { WorkersService } from '../services/workers.service';
 @Component({
-    selector: 'app-user-search',
-    templateUrl: './user.search.component.html',
-    styleUrls: ['./user.search.component.css'],
+    selector: 'app-worker-search',
+    templateUrl: './worker.search.component.html',
+    styleUrls: ['./worker.search.component.css'],
 })
-export class UserSearchComponent implements OnInit {
-    constructor(private userService: UsersService) {}
+export class WorkerSearchComponent implements OnInit {
+    constructor(private workerService: WorkersService) {}
 
     searchUserCtrl = new FormControl();
-    filteredUsers!: Array<User>;
+    filteredUsers!: Array<Worker>;
     isLoading = false;
     errorMsg!: string;
     minLengthTerm = 3;
@@ -41,11 +41,17 @@ export class UserSearchComponent implements OnInit {
                 }),
             )
             .subscribe((user: string) => {
-                this.userService
+                this.workerService
                     .searchUser(user)
                     .subscribe({
-                        next: (data: Array<User>) => {
-                            this.filteredUsers = data;
+                        next: (data: Array<Worker>) => {
+                            if (data.length >= 1) {
+                                this.filteredUsers = data;
+                                console.log(
+                                    typeof this.filteredUsers,
+                                    typeof data,
+                                );
+                            }
                         },
                         error: (err) => {
                             console.log('error:', err);

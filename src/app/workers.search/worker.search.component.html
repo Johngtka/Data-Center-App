@@ -21,7 +21,7 @@
             }}</mat-option>
             <ng-container *ngIf="!isLoading">
                 <mat-option *ngFor="let user of filteredUsers" [value]="user">
-                    <span>{{ user.surName }}</span>
+                    <span>{{ user.name && user.surName }}</span>
                 </mat-option>
             </ng-container>
         </mat-autocomplete>
