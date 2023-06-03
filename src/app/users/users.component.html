@@ -1,10 +1,5 @@
-<app-user-search *ngIf="hideTable"></app-user-search>
-<table
-    *ngIf="!hideTable"
-    mat-table
-    [dataSource]="dataSource"
-    class="mat-elevation-z8"
->
+<app-user-search></app-user-search>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     <ng-container matColumnDef="id">
@@ -18,7 +13,7 @@
             {{ 'USERS_TABLE.FULLNAME' | translate }}
         </th>
         <td mat-cell *matCellDef="let element">
-            {{ element.fullName }}
+            {{ element.name + ' ' + element.surname }}
         </td>
     </ng-container>
     <ng-container matColumnDef="dob">

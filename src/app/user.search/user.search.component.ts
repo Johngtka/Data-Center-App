@@ -21,7 +21,46 @@ export class UserSearchComponent implements OnInit {
     filteredUsers!: Array<User>;
     isLoading = false;
     errorMsg!: string;
-    minlenghtTerm = 3;
-
-    ngOnInit(): void {}
+    minLengthTerm = 3;
+    ngOnInit(): void {
+        this.searchUserCtrl.valueChanges
+            .pipe(
+                filter((res) => {
+                    return (
+                        !!res &&
+                        res !== null &&
+                        res.length >= this.minLengthTerm
+                    );
+                }),
+                distinctUntilChanged(),
+                debounceTime(1000),
+                tap(() => {
+                    this.errorMsg = '';
+                    this.filteredUsers = [];
+                    this.isLoading = true;
+                }),
+            )
+            .subscribe((user: string) => {
+                this.userService
+                    .searchUser(user)
+                    .subscribe({
+                        next: (data: Array<User>) => {
+                            this.filteredUsers = data;
+                        },
+                        error: (err) => {
+                            console.log('error:', err);
+                        },
+                    })
+                    .add(() => {
+                        this.isLoading = false;
+                    });
+            });
+    }
+    displayWith(value: any) {
+        return value ? value.name : '';
+    }
+    clearSelection() {
+        this.searchUserCtrl.setValue('');
+        this.filteredUsers = [];
+    }
 }

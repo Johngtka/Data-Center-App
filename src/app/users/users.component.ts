@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { User } from '../models/user';
 import { UsersService } from '../service/users.service';
@@ -12,7 +12,6 @@ export class UsersComponent implements OnInit {
     constructor(private usersService: UsersService) {}
     dataSource!: User[];
     isLoadingResults = true;
-    hideTable = false;
     displayedColumns: string[] = ['id', 'fullName', 'dob'];
 
     ngOnInit(): void {
@@ -25,14 +24,5 @@ export class UsersComponent implements OnInit {
                 console.log(err);
             },
         });
-    }
-    @HostListener('document:keydown', ['$event'])
-    searchUser(event: KeyboardEvent) {
-        if (event.key == '/') {
-            this.hideTable = true;
-        }
-        // if (event.key == 'Escape') {
-        //     this.hideTable = false;
-        // }
     }
 }
