@@ -14,7 +14,7 @@ export class WorkersComponent implements OnInit {
     displayedColumns: string[] = ['id', 'fullName', 'dob'];
 
     ngOnInit(): void {
-        this.workersService.getUsers().subscribe({
+        this.workersService.getWorkers().subscribe({
             next: (data: Array<Worker>) => {
                 this.dataSource = data;
                 this.isLoadingResults = false;

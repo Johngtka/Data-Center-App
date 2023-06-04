@@ -42,7 +42,7 @@ export class WorkerSearchComponent implements OnInit {
             )
             .subscribe((user: string) => {
                 this.workerService
-                    .searchUser(user)
+                    .searchWorker(user)
                     .subscribe({
                         next: (data: Array<Worker>) => {
                             if (data.length >= 1) {

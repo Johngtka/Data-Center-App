@@ -13,12 +13,16 @@ export class WorkersService {
     constructor(private http: HttpClient) {}
     private apiUrl = environment.API_URL;
 
-    getUsers(): Observable<Array<Worker>> {
+    getWorkers(): Observable<Array<Worker>> {
         return this.http.get<Array<Worker>>(`${this.apiUrl}`);
     }
 
-    searchUser(data: string): Observable<Array<Worker>> {
+    searchWorker(data: string): Observable<Array<Worker>> {
         const body = { name: data };
         return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
+    }
+    deleteWorker(data: string): Observable<Array<Worker>> {
+        const body = { del: true, name: data };
+        return this.http.delete<Array<Worker>>(`${this.apiUrl}/${body}`);
     }
 }
