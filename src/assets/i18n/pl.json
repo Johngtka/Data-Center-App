@@ -4,6 +4,7 @@
         "DOB": "Data Urodzenia"
     },
     "USER_SEARCH": {
+        "INPUT": "Pełne Imie?..",
         "LOADING": "Ładowanie..."
     }
 }
