@@ -45,13 +45,10 @@ export class WorkerSearchComponent implements OnInit {
                     .searchWorker(user)
                     .subscribe({
                         next: (data: Array<Worker>) => {
-                            if (data.length >= 1) {
-                                this.filteredUsers = data;
-                                console.log(
-                                    typeof this.filteredUsers,
-                                    typeof data,
-                                );
-                            }
+                            // if (data.length >= 1) {
+
+                            // }
+                            this.filteredUsers = data;
                         },
                         error: (err) => {
                             console.log('error:', err);
@@ -60,6 +57,14 @@ export class WorkerSearchComponent implements OnInit {
                     .add(() => {
                         this.isLoading = false;
                     });
+                // this.workerService.deleteWorker(user).subscribe({
+                //     next: () => {
+                //         console.log('deleted');
+                //     },
+                //     error: (err) => {
+                //         console.log(err);
+                //     },
+                // });
             });
     }
     displayWith(value: any) {

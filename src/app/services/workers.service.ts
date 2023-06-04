@@ -23,6 +23,6 @@ export class WorkersService {
     }
     deleteWorker(data: string): Observable<Array<Worker>> {
         const body = { del: true, name: data };
-        return this.http.delete<Array<Worker>>(`${this.apiUrl}/${body}`);
+        return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 }
