@@ -15,7 +15,10 @@
         >
             <mat-icon>close</mat-icon>
         </button>
-        <mat-autocomplete #auto="matAutocomplete">
+        <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="onSelected()"
+        >
             <mat-option *ngIf="isLoading" class="is-loading">{{
                 'USER_SEARCH.LOADING' | translate
             }}</mat-option>

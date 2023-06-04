@@ -9,9 +9,11 @@ import { WorkersService } from '../services/workers.service';
 })
 export class WorkersComponent implements OnInit {
     constructor(private workersService: WorkersService) {}
+
     dataSource!: Worker[];
     isLoadingResults = true;
     displayedColumns: string[] = ['id', 'fullName', 'dob'];
+    employer!: boolean;
 
     ngOnInit(): void {
         this.workersService.getWorkers().subscribe({
@@ -23,5 +25,9 @@ export class WorkersComponent implements OnInit {
                 console.log(err);
             },
         });
+    }
+    searchedEmployer(event: boolean): void {
+        this.employer = event;
+        console.log(event);
     }
 }

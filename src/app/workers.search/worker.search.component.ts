@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { tap } from 'rxjs';
@@ -17,20 +19,18 @@ import { WorkersService } from '../services/workers.service';
 export class WorkerSearchComponent implements OnInit {
     constructor(private workerService: WorkersService) {}
 
+    @Output() worker = new EventEmitter<boolean>();
     searchUserCtrl = new FormControl();
     filteredUsers!: Array<Worker>;
     isLoading = false;
     errorMsg!: string;
-    minLengthTerm = 3;
+    selectedWorker!: boolean;
+
     ngOnInit(): void {
         this.searchUserCtrl.valueChanges
             .pipe(
                 filter((res) => {
-                    return (
-                        !!res &&
-                        res !== null &&
-                        res.length >= this.minLengthTerm
-                    );
+                    return !!res && res !== null;
                 }),
                 distinctUntilChanged(),
                 debounceTime(1000),
@@ -45,10 +45,10 @@ export class WorkerSearchComponent implements OnInit {
                     .searchWorker(user)
                     .subscribe({
                         next: (data: Array<Worker>) => {
-                            // if (data.length >= 1) {
-
-                            // }
-                            this.filteredUsers = data;
+                            if (data.length >= 1) {
+                                this.filteredUsers = data;
+                                this.selectedWorker = true;
+                            }
                         },
                         error: (err) => {
                             console.log('error:', err);
@@ -57,14 +57,6 @@ export class WorkerSearchComponent implements OnInit {
                     .add(() => {
                         this.isLoading = false;
                     });
-                // this.workerService.deleteWorker(user).subscribe({
-                //     next: () => {
-                //         console.log('deleted');
-                //     },
-                //     error: (err) => {
-                //         console.log(err);
-                //     },
-                // });
             });
     }
     displayWith(value: any) {
@@ -73,5 +65,8 @@ export class WorkerSearchComponent implements OnInit {
     clearSelection() {
         this.searchUserCtrl.setValue('');
         this.filteredUsers = [];
+    }
+    onSelected(): void {
+        this.worker.emit(this.selectedWorker);
     }
 }
