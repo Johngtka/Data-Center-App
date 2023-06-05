@@ -22,6 +22,9 @@
             <mat-option *ngIf="isLoading" class="is-loading">{{
                 'USER_SEARCH.LOADING' | translate
             }}</mat-option>
+            <mat-option *ngIf="!noEmployeeAlert" class="is-loading">{{
+                'USER_SEARCH.NO_USER' | translate
+            }}</mat-option>
             <ng-container *ngIf="!isLoading">
                 <mat-option
                     *ngFor="let user of filteredUsers"

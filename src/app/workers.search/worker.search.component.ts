@@ -23,6 +23,7 @@ export class WorkerSearchComponent implements OnInit {
     searchUserCtrl = new FormControl();
     filteredUsers!: Array<Worker>;
     isLoading = false;
+    noEmployeeAlert = true;
     errorMsg!: string;
     selectedWorker!: boolean;
 
@@ -48,6 +49,8 @@ export class WorkerSearchComponent implements OnInit {
                             if (data.length >= 1) {
                                 this.filteredUsers = data;
                                 this.selectedWorker = true;
+                            } else {
+                                this.noEmployeeAlert = false;
                             }
                         },
                         error: (err) => {
@@ -67,6 +70,10 @@ export class WorkerSearchComponent implements OnInit {
         this.filteredUsers = [];
     }
     onSelected(): void {
-        this.worker.emit(this.selectedWorker);
+        if (this.selectedWorker) {
+            this.worker.emit(this.selectedWorker);
+        } else {
+            this.worker.emit(this.noEmployeeAlert);
+        }
     }
 }

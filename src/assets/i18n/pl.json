@@ -5,6 +5,7 @@
     },
     "USER_SEARCH": {
         "INPUT": "Pełne Imie?..",
-        "LOADING": "Ładowanie..."
+        "LOADING": "Ładowanie...",
+        "NO_USER": "Nie znaleziono..."
     }
 }
