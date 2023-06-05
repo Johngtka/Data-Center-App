@@ -1,7 +1,8 @@
 {
     "USERS_TABLE": {
         "FULLNAME": "Imie i Nazwisko",
-        "DOB": "Data Urodzenia"
+        "DOB": "Data Urodzenia",
+        "PANEL": "Opcje"
     },
     "USER_SEARCH": {
         "INPUT": "Pełne Imie?..",

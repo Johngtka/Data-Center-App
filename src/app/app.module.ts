@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -38,6 +39,7 @@ const materialsModules = [
     MatFormFieldModule,
     MatAutocompleteModule,
     MatProgressSpinnerModule,
+    MatMenuModule,
 ];
 
 @NgModule({

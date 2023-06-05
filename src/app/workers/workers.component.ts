@@ -12,7 +12,8 @@ export class WorkersComponent implements OnInit {
 
     dataSource!: Worker[];
     isLoadingResults = true;
-    displayedColumns: string[] = ['id', 'fullName', 'dob'];
+    workersID: number[] = [];
+    displayedColumns: string[] = ['id', 'fullName', 'dob', 'panel'];
     employer!: boolean;
 
     ngOnInit(): void {
@@ -26,6 +27,16 @@ export class WorkersComponent implements OnInit {
             },
         });
     }
+
+    clickedRow(row: Worker): void {
+        const ID = this.workersID.indexOf(row.id);
+        if (ID !== -1) {
+            this.workersID.splice(ID, 1);
+        } else {
+            this.workersID.push(row.id);
+        }
+    }
+
     searchedEmployer(event: boolean): void {
         this.employer = event;
         console.log(event);
