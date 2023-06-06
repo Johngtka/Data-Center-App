@@ -1,14 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MatDialog } from '@angular/material/dialog';
+
 import { Worker } from '../models/worker';
 import { WorkersService } from '../services/workers.service';
+import {
+    ConfirmationDialogComponent,
+    ConfirmationDialogResponse,
+} from '../confirmation.dialog/confirmation.dialog.component';
+
 @Component({
     selector: 'app-workers',
     templateUrl: './workers.component.html',
     styleUrls: ['./workers.component.css'],
 })
 export class WorkersComponent implements OnInit {
-    constructor(private workersService: WorkersService) {}
+    constructor(
+        private workersService: WorkersService,
+        private dialog: MatDialog,
+    ) {}
 
     dataSource!: Worker[];
     isLoadingResults = true;
@@ -35,6 +45,18 @@ export class WorkersComponent implements OnInit {
         } else {
             this.workersID.push(row.id);
         }
+    }
+
+    deleteEmploy(worker: Worker) {
+        const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+            data: {
+                title: 'CONFIRMATION_DIALOG_USER_DELETE.TITLE',
+                message: 'CONFIRMATION_DIALOG_USER_DELETE.MESSAGE',
+                action: 'CONFIRMATION_DIALOG_USER_DELETE.ACTION',
+            },
+            disableClose: true,
+        });
+        console.log(worker.id);
     }
 
     searchedEmployer(event: boolean): void {

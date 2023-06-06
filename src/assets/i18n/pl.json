@@ -8,5 +8,13 @@
         "INPUT": "Pełne Imie?..",
         "LOADING": "Ładowanie...",
         "NO_USER": "Nie znaleziono..."
+    },
+    "CONFIRMATION_DIALOG": {
+        "CANCEL": "Anuluj"
+    },
+    "CONFIRMATION_DIALOG_USER_DELETE": {
+        "ACTION": "Usuń",
+        "TITLE": "Potwierdzenie Usunięcia",
+        "MESSAGE": "Czy jesteś pewien że chcesz usunąć pracownika ?"
     }
 }
