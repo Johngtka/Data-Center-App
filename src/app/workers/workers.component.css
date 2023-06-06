@@ -1,0 +1,33 @@
+.mat-mdc-row {
+    cursor: pointer;
+}
+
+.selectedRow,
+selectedRow:hover {
+    background-color: lightgray !important;
+}
+
+.edit {
+    background-color: green;
+}
+
+.menu {
+    background-color: #fff;
+    color: #000;
+}
+
+.mat-column-id {
+    width: 10%;
+}
+
+.mat-column-fullName {
+    width: 20%;
+}
+
+.mat-column-dob {
+    width: 20%;
+}
+
+.mat-column-panel {
+    width: 10%;
+}
