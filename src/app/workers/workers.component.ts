@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
+import {
+    MatTableDataSource,
+    MatTableDataSourcePaginator,
+} from '@angular/material/table';
 
 import { Worker } from '../models/worker';
 import { WorkersService } from '../services/workers.service';
+import { SnackService, SNACK_TYPE } from '../services/snack.service';
 import {
     ConfirmationDialogComponent,
     ConfirmationDialogResponse,
@@ -17,10 +22,12 @@ import {
 export class WorkersComponent implements OnInit {
     constructor(
         private workersService: WorkersService,
+        private snackService: SnackService,
         private dialog: MatDialog,
     ) {}
 
-    dataSource!: Worker[];
+    worker!: Worker[];
+    dataSource!: MatTableDataSource<Worker, MatTableDataSourcePaginator>;
     isLoadingResults = true;
     workersID: number[] = [];
     displayedColumns: string[] = ['id', 'fullName', 'dob', 'panel'];
@@ -28,8 +35,9 @@ export class WorkersComponent implements OnInit {
 
     ngOnInit(): void {
         this.workersService.getWorkers().subscribe({
-            next: (data: Array<Worker>) => {
-                this.dataSource = data;
+            next: (data) => {
+                this.worker = data;
+                this.dataSource = new MatTableDataSource<Worker>(this.worker);
                 this.isLoadingResults = false;
             },
             error: (err) => {
@@ -47,7 +55,7 @@ export class WorkersComponent implements OnInit {
         }
     }
 
-    deleteEmploy(worker: Worker) {
+    deleteEmployer(worker: Worker) {
         const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
             data: {
                 title: 'CONFIRMATION_DIALOG_USER_DELETE.TITLE',
@@ -56,7 +64,42 @@ export class WorkersComponent implements OnInit {
             },
             disableClose: true,
         });
-        console.log(worker.id);
+        dialogRef.afterClosed().subscribe((req) => {
+            if (req === ConfirmationDialogResponse.OK) {
+                this.workersService.deleteWorker(worker.name).subscribe({
+                    next: () => {
+                        this.worker = this.worker.filter(
+                            (ds: Worker) => ds.name !== worker.name,
+                        );
+                        this.dataSource = new MatTableDataSource<Worker>(
+                            this.worker,
+                        );
+                        this.snackService.showSnackBar(
+                            'CONFIRMATION_DIALOG_USER_DELETE.SNACK_MESSAGE',
+                            SNACK_TYPE.success,
+                        );
+                        this.workersID = [];
+                        this.workersService.getWorkers().subscribe({
+                            next: (data) => {
+                                this.dataSource =
+                                    new MatTableDataSource<Worker>(data);
+                                this.isLoadingResults = false;
+                            },
+                            error: (err) => {
+                                console.log(err);
+                            },
+                        });
+                    },
+                    error: (err) => {
+                        console.log(err);
+                        this.snackService.showSnackBar(
+                            'ERROR.USER_DELETE_ERROR',
+                            SNACK_TYPE.error,
+                        );
+                    },
+                });
+            }
+        });
     }
 
     searchedEmployer(event: boolean): void {

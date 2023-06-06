@@ -15,6 +15,13 @@
     "CONFIRMATION_DIALOG_USER_DELETE": {
         "ACTION": "Usuń",
         "TITLE": "Potwierdzenie Usunięcia",
-        "MESSAGE": "Czy jesteś pewien że chcesz usunąć pracownika ?"
+        "MESSAGE": "Czy jesteś pewien że chcesz usunąć pracownika ?",
+        "SNACK_MESSAGE": "Pomyślnie usunięto pracownika"
+    },
+    "SNACK_BAR": {
+        "CLOSE": "Zamknij"
+    },
+    "ERROR": {
+        "USER_DELETE_ERROR": "Niestety coś nie wyszło, przepraszamy"
     }
 }
