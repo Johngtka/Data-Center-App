@@ -41,6 +41,10 @@ export class WorkersComponent implements OnInit {
                 this.isLoadingResults = false;
             },
             error: (err) => {
+                this.snackService.showSnackBar(
+                    'ERROR.USERS_GETTING_ERROR',
+                    SNACK_TYPE.error,
+                );
                 console.log(err);
             },
         });
@@ -87,6 +91,10 @@ export class WorkersComponent implements OnInit {
                             },
                             error: (err) => {
                                 console.log(err);
+                                this.snackService.showSnackBar(
+                                    'ERROR.USERS_GETTING_ERROR',
+                                    SNACK_TYPE.error,
+                                );
                             },
                         });
                     },

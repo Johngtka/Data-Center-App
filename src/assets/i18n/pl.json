@@ -22,6 +22,7 @@
         "CLOSE": "Zamknij"
     },
     "ERROR": {
+        "USERS_GETTING_ERROR": "Pobieranie przcowników z bazy nie powiodło się, przepraszamy",
         "USER_DELETE_ERROR": "Niestety coś nie wyszło, przepraszamy"
     }
 }
