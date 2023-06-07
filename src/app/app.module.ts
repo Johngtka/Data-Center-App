@@ -9,8 +9,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -23,6 +25,7 @@ import { WorkersService } from './services/workers.service';
 import { AppRoutingModule } from './app-routing.module';
 import { WorkersComponent } from './workers/workers.component';
 import { WorkerSearchComponent } from './workers.search/worker.search.component';
+import { ConfirmationDialogComponent } from './confirmation.dialog/confirmation.dialog.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient, './assets/i18n/');
@@ -40,10 +43,17 @@ const materialsModules = [
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatMenuModule,
+    MatDialogModule,
+    MatSnackBarModule,
 ];
 
 @NgModule({
-    declarations: [AppComponent, WorkersComponent, WorkerSearchComponent],
+    declarations: [
+        AppComponent,
+        WorkersComponent,
+        WorkerSearchComponent,
+        ConfirmationDialogComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,

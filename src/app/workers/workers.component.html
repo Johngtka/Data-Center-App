@@ -44,7 +44,11 @@
                 <button mat-mini-fab class="edit">
                     <mat-icon class="mat-18">edit</mat-icon>
                 </button>
-                <button mat-mini-fab color="warn">
+                <button
+                    mat-mini-fab
+                    color="warn"
+                    (click)="deleteEmployer(element)"
+                >
                     <mat-icon class="mat-18">delete</mat-icon>
                 </button>
             </span>

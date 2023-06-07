@@ -8,6 +8,40 @@ body {
     margin: 0;
     font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
+
+.info-snackbar div {
+    background: blue !important;
+    color: white;
+}
+
+.info-snackbar button {
+    background-color: blue;
+    color: white !important;
+    border: none;
+}
+
+.success-snackbar div {
+    background: green !important;
+    color: white;
+}
+
+.success-snackbar button {
+    background-color: green;
+    color: white !important;
+    border: none;
+}
+
+.error-snackbar div {
+    background: red !important;
+    color: white;
+}
+
+.error-snackbar button {
+    background-color: red;
+    color: white !important;
+    border: none;
+}
+
 .loader-container {
     position: relative;
     min-height: 200px;

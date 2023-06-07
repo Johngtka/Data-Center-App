@@ -8,5 +8,21 @@
         "INPUT": "Pełne Imie?..",
         "LOADING": "Ładowanie...",
         "NO_USER": "Nie znaleziono..."
+    },
+    "CONFIRMATION_DIALOG": {
+        "CANCEL": "Anuluj"
+    },
+    "CONFIRMATION_DIALOG_USER_DELETE": {
+        "ACTION": "Usuń",
+        "TITLE": "Potwierdzenie Usunięcia",
+        "MESSAGE": "Czy jesteś pewien że chcesz usunąć pracownika ?",
+        "SNACK_MESSAGE": "Pomyślnie usunięto pracownika"
+    },
+    "SNACK_BAR": {
+        "CLOSE": "Zamknij"
+    },
+    "ERROR": {
+        "USERS_GETTING_ERROR": "Pobieranie przcowników z bazy nie powiodło się, przepraszamy",
+        "USER_DELETE_ERROR": "Niestety coś nie wyszło, przepraszamy"
     }
 }
