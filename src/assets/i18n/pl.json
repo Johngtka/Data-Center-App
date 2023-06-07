@@ -9,6 +9,19 @@
         "LOADING": "Ładowanie...",
         "NO_USER": "Nie znaleziono..."
     },
+    "USER_INPUT": {
+        "NAME": "Imie",
+        "SURNAME": "Nazwisko",
+        "DOB": "Data Urodzenia"
+    },
+    "USER_CREATE": {
+        "TITLE": "Rejestracja nowego pracownika",
+        "ACTION": "Zarejestruj"
+    },
+    "USER_UPDATE": {
+        "TITLE": "Edycja pracownika",
+        "ACTION": "Zaktualizuj"
+    },
     "CONFIRMATION_DIALOG": {
         "CANCEL": "Anuluj"
     },

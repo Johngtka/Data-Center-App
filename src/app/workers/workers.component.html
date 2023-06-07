@@ -41,7 +41,7 @@
             <span
                 *ngIf="workersID.length >= 1 && workersID.includes(element.id)"
             >
-                <button mat-mini-fab class="edit">
+                <button mat-mini-fab class="edit" (click)="openDialog(element)">
                     <mat-icon class="mat-18">edit</mat-icon>
                 </button>
                 <button

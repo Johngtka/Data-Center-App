@@ -8,6 +8,7 @@ import {
 
 import { Worker } from '../models/worker';
 import { WorkersService } from '../services/workers.service';
+import { WorkerInputDialogComponent } from '../worker-input-dialog/worker-input-dialog.component';
 import { SnackService, SNACK_TYPE } from '../services/snack.service';
 import {
     ConfirmationDialogComponent,
@@ -57,6 +58,20 @@ export class WorkersComponent implements OnInit {
         } else {
             this.workersID.push(row.id);
         }
+    }
+
+    openDialog(worker?: Worker) {
+        const dialogRef = this.dialog.open(WorkerInputDialogComponent, {
+            data: {
+                worker,
+            },
+            disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.updateTable(result);
+            }
+        });
     }
 
     deleteEmployer(worker: Worker) {
@@ -113,5 +128,23 @@ export class WorkersComponent implements OnInit {
     searchedEmployer(event: boolean): void {
         this.employer = event;
         console.log(event);
+    }
+    private updateTable(newOrUpdatedPatient: Worker) {
+        if (!!this.worker && !!newOrUpdatedPatient) {
+            const tableWorkerIndex = this.worker.findIndex(
+                (ds: Worker) => ds.name === newOrUpdatedPatient.name,
+            );
+
+            if (tableWorkerIndex !== -1) {
+                // update
+                this.worker[tableWorkerIndex] = newOrUpdatedPatient;
+                this.worker = [...this.worker];
+                this.dataSource = new MatTableDataSource<Worker>(this.worker);
+            } else {
+                // new
+                this.worker = [...this.worker, newOrUpdatedPatient];
+                this.dataSource = new MatTableDataSource<Worker>(this.worker);
+            }
+        }
     }
 }

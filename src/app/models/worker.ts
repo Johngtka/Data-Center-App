@@ -1,6 +1,6 @@
 export interface Worker {
     id: number;
     name: string;
-    surName: string;
+    surname: string;
     dob: string;
 }

@@ -26,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { WorkersComponent } from './workers/workers.component';
 import { WorkerSearchComponent } from './workers.search/worker.search.component';
 import { ConfirmationDialogComponent } from './confirmation.dialog/confirmation.dialog.component';
+import { WorkerInputDialogComponent } from './worker-input-dialog/worker-input-dialog.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient, './assets/i18n/');
@@ -53,6 +54,7 @@ const materialsModules = [
         WorkersComponent,
         WorkerSearchComponent,
         ConfirmationDialogComponent,
+        WorkerInputDialogComponent,
     ],
     imports: [
         BrowserModule,
