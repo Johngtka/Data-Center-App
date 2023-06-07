@@ -1,5 +1,6 @@
 <form [formGroup]="registerForm">
-    <h2 mat-dialog-title>{{ titleText | translate }}</h2>
+    <h1 mat-dialog-title>{{ titleText | translate }}</h1>
+    <br />
     <mat-dialog-content class="mat-typography">
         <div class="col-wrapper">
             <div class="col">
@@ -7,7 +8,7 @@
                     <mat-label>{{ 'USER_INPUT.NAME' | translate }}</mat-label>
                     <input matInput formControlName="name" tabindex="1"
                 /></mat-form-field>
-                <mat-form-field appearance="fill">
+                <mat-form-field *ngIf="!isEdit" appearance="fill">
                     <mat-label>{{ 'USER_INPUT.DOB' | translate }}</mat-label>
                     <input
                         matInput
@@ -36,10 +37,10 @@
             color="primary"
             mat-button
             cdkFocusInitial
+            (click)="addEmployer()"
             [disabled]="!hasChange() || !registerForm.valid"
         >
             {{ buttonText | translate }}
         </button>
     </mat-dialog-actions>
 </form>
-<!-- (click)="addPatient()" -->

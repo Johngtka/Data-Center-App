@@ -18,7 +18,18 @@ export class WorkersService {
     }
 
     searchWorker(data: string): Observable<Array<Worker>> {
-        const body = { name: data };
+        const body = { find: true, name: data };
+        return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
+    }
+
+    newWorker(data: Worker): Observable<Array<Worker>> {
+        const body = {
+            new: true,
+            name: data.name,
+            surName: data.surname,
+            dob: data.dob,
+        };
+        console.log(body);
         return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 

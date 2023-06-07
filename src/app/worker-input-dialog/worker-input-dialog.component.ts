@@ -16,7 +16,7 @@ import { WorkersService } from '../services/workers.service';
 })
 export class WorkerInputDialogComponent implements OnInit {
     constructor(
-        private workerService: WorkersService,
+        private workersService: WorkersService,
         private snackService: SnackService,
         private dialogRef: MatDialogRef<WorkerInputDialogComponent>,
         @Inject(MAT_DIALOG_DATA) public data: { worker: Worker },
@@ -40,7 +40,6 @@ export class WorkerInputDialogComponent implements OnInit {
                 surname: new FormControl(this.data.worker.surname, [
                     Validators.required,
                 ]),
-                dob: new FormControl(this.data.worker.dob),
             });
         } else {
             this.isEdit = false;
@@ -54,6 +53,23 @@ export class WorkerInputDialogComponent implements OnInit {
         }
         this.originalFormValues = this.registerForm.value;
     }
+
+    addEmployer() {
+        const worker = this.registerForm.value;
+        this.workersService.newWorker(worker).subscribe({
+            next: (newEmployer) => {
+                this.dialogRef.close(newEmployer);
+            },
+            error: (err) => {
+                console.log(err);
+            },
+        });
+        // if (this.isEdit) {
+        // } else {
+
+        // }
+    }
+
     hasChange() {
         return (
             JSON.stringify(this.registerForm.value) !==
