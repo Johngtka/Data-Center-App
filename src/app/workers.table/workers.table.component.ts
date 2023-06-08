@@ -27,7 +27,6 @@ export class WorkersTableComponent implements OnInit {
         private dialog: MatDialog,
     ) {}
 
-    new!: boolean;
     worker!: Worker[];
     dataSource!: MatTableDataSource<Worker, MatTableDataSourcePaginator>;
     isLoadingResults = true;
