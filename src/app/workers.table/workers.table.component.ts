@@ -27,11 +27,13 @@ export class WorkersTableComponent implements OnInit {
         private dialog: MatDialog,
     ) {}
 
+    new!: boolean;
     worker!: Worker[];
     dataSource!: MatTableDataSource<Worker, MatTableDataSourcePaginator>;
     isLoadingResults = true;
     workersID: number[] = [];
     displayedColumns: string[] = ['id', 'fullName', 'dob', 'panel'];
+
     ngOnInit(): void {
         this.workersService.getWorkers().subscribe({
             next: (data) => {
@@ -67,6 +69,19 @@ export class WorkersTableComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.updateTable(result);
+                this.workersService.getWorkers().subscribe({
+                    next: (data) => {
+                        this.dataSource = new MatTableDataSource<Worker>(data);
+                        this.isLoadingResults = false;
+                    },
+                    error: (err) => {
+                        this.snackService.showSnackBar(
+                            'ERROR.USERS_GETTING_ERROR',
+                            SNACK_TYPE.error,
+                        );
+                        console.log(err);
+                    },
+                });
             }
         });
     }
@@ -82,10 +97,10 @@ export class WorkersTableComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe((req) => {
             if (req === ConfirmationDialogResponse.OK) {
-                this.workersService.deleteWorker(worker.name).subscribe({
+                this.workersService.deleteWorker(worker.id).subscribe({
                     next: () => {
                         this.worker = this.worker.filter(
-                            (ds: Worker) => ds.name !== worker.name,
+                            (ds: Worker) => ds.id !== worker.id,
                         );
                         this.dataSource = new MatTableDataSource<Worker>(
                             this.worker,

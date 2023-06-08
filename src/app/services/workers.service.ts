@@ -29,12 +29,11 @@ export class WorkersService {
             surName: data.surname,
             dob: data.dob,
         };
-        console.log(body);
         return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 
-    deleteWorker(data: string): Observable<Array<Worker>> {
-        const body = { del: true, name: data };
+    deleteWorker(data: number): Observable<Array<Worker>> {
+        const body = { del: true, workerId: data };
         return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 }

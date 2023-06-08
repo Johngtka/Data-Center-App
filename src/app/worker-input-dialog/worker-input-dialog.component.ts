@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -48,7 +47,7 @@ export class WorkerInputDialogComponent implements OnInit {
             this.registerForm = new FormGroup({
                 name: new FormControl('', [Validators.required]),
                 surname: new FormControl('', [Validators.required]),
-                dob: new FormControl(),
+                dob: new FormControl('', [Validators.required]),
             });
         }
         this.originalFormValues = this.registerForm.value;

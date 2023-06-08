@@ -23,7 +23,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { WorkersService } from './services/workers.service';
 import { AppRoutingModule } from './app-routing.module';
-import { WorkersComponent } from './workers/workers.component';
+import { HomeComponent } from './workers/home.component';
 import { WorkerSearchComponent } from './workers.search/worker.search.component';
 import { ConfirmationDialogComponent } from './confirmation.dialog/confirmation.dialog.component';
 import { WorkerInputDialogComponent } from './worker-input-dialog/worker-input-dialog.component';
@@ -52,7 +52,7 @@ const materialsModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        WorkersComponent,
+        HomeComponent,
         WorkerSearchComponent,
         ConfirmationDialogComponent,
         WorkerInputDialogComponent,
