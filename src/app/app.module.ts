@@ -28,6 +28,7 @@ import { WorkerSearchComponent } from './workers.search/worker.search.component'
 import { ConfirmationDialogComponent } from './confirmation.dialog/confirmation.dialog.component';
 import { WorkerInputDialogComponent } from './worker-input-dialog/worker-input-dialog.component';
 import { WorkersTableComponent } from './workers.table/workers.table.component';
+import { AgePipe } from './pipes/age.pipe';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient, './assets/i18n/');
@@ -57,6 +58,7 @@ const materialsModules = [
         ConfirmationDialogComponent,
         WorkerInputDialogComponent,
         WorkersTableComponent,
+        AgePipe,
     ],
     imports: [
         BrowserModule,
