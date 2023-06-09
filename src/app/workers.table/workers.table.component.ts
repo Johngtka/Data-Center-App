@@ -8,6 +8,7 @@ import {
 
 import { Worker } from '../models/worker';
 import { WorkersService } from '../services/workers.service';
+import { WorkerInputDialogComponent } from '../worker-input-dialog/worker-input-dialog.component';
 import { SnackService, SNACK_TYPE } from '../services/snack.service';
 import {
     ConfirmationDialogComponent,
@@ -15,11 +16,11 @@ import {
 } from '../confirmation.dialog/confirmation.dialog.component';
 
 @Component({
-    selector: 'app-workers',
-    templateUrl: './workers.component.html',
-    styleUrls: ['./workers.component.css'],
+    selector: 'app-workers-table',
+    templateUrl: './workers.table.component.html',
+    styleUrls: ['./workers.table.component.css'],
 })
-export class WorkersComponent implements OnInit {
+export class WorkersTableComponent implements OnInit {
     constructor(
         private workersService: WorkersService,
         private snackService: SnackService,
@@ -31,7 +32,6 @@ export class WorkersComponent implements OnInit {
     isLoadingResults = true;
     workersID: number[] = [];
     displayedColumns: string[] = ['id', 'fullName', 'dob', 'panel'];
-    employer!: boolean;
 
     ngOnInit(): void {
         this.workersService.getWorkers().subscribe({
@@ -49,7 +49,6 @@ export class WorkersComponent implements OnInit {
             },
         });
     }
-
     clickedRow(row: Worker): void {
         const ID = this.workersID.indexOf(row.id);
         if (ID !== -1) {
@@ -57,6 +56,34 @@ export class WorkersComponent implements OnInit {
         } else {
             this.workersID.push(row.id);
         }
+    }
+
+    openDialog(worker?: Worker) {
+        const dialogRef = this.dialog.open(WorkerInputDialogComponent, {
+            data: {
+                worker,
+            },
+            disableClose: true,
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.updateTable(result);
+                this.workersService.getWorkers().subscribe({
+                    next: (data) => {
+                        this.dataSource = new MatTableDataSource<Worker>(data);
+                        this.isLoadingResults = false;
+                        this.workersID = [];
+                    },
+                    error: (err) => {
+                        this.snackService.showSnackBar(
+                            'ERROR.USERS_GETTING_ERROR',
+                            SNACK_TYPE.error,
+                        );
+                        console.log(err);
+                    },
+                });
+            }
+        });
     }
 
     deleteEmployer(worker: Worker) {
@@ -70,16 +97,16 @@ export class WorkersComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe((req) => {
             if (req === ConfirmationDialogResponse.OK) {
-                this.workersService.deleteWorker(worker.name).subscribe({
+                this.workersService.deleteWorker(worker.id).subscribe({
                     next: () => {
                         this.worker = this.worker.filter(
-                            (ds: Worker) => ds.name !== worker.name,
+                            (ds: Worker) => ds.id !== worker.id,
                         );
                         this.dataSource = new MatTableDataSource<Worker>(
                             this.worker,
                         );
                         this.snackService.showSnackBar(
-                            'CONFIRMATION_DIALOG_USER_DELETE.SNACK_MESSAGE',
+                            'SUCCESS.USER_DELETE',
                             SNACK_TYPE.success,
                         );
                         this.workersID = [];
@@ -109,9 +136,22 @@ export class WorkersComponent implements OnInit {
             }
         });
     }
+    private updateTable(newOrUpdatedPatient: Worker) {
+        if (!!this.worker && !!newOrUpdatedPatient) {
+            const tableWorkerIndex = this.worker.findIndex(
+                (ds: Worker) => ds.name === newOrUpdatedPatient.name,
+            );
 
-    searchedEmployer(event: boolean): void {
-        this.employer = event;
-        console.log(event);
+            if (tableWorkerIndex !== -1) {
+                // update
+                this.worker[tableWorkerIndex] = newOrUpdatedPatient;
+                this.worker = [...this.worker];
+                this.dataSource = new MatTableDataSource<Worker>(this.worker);
+            } else {
+                // new
+                this.worker = [...this.worker, newOrUpdatedPatient];
+                this.dataSource = new MatTableDataSource<Worker>(this.worker);
+            }
+        }
     }
 }

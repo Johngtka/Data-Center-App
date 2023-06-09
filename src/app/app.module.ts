@@ -23,9 +23,12 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppComponent } from './app.component';
 import { WorkersService } from './services/workers.service';
 import { AppRoutingModule } from './app-routing.module';
-import { WorkersComponent } from './workers/workers.component';
+import { HomeComponent } from './workers/home.component';
 import { WorkerSearchComponent } from './workers.search/worker.search.component';
 import { ConfirmationDialogComponent } from './confirmation.dialog/confirmation.dialog.component';
+import { WorkerInputDialogComponent } from './worker-input-dialog/worker-input-dialog.component';
+import { WorkersTableComponent } from './workers.table/workers.table.component';
+import { AgePipe } from './pipes/age.pipe';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
     return new TranslateHttpLoader(httpClient, './assets/i18n/');
@@ -50,9 +53,12 @@ const materialsModules = [
 @NgModule({
     declarations: [
         AppComponent,
-        WorkersComponent,
+        HomeComponent,
         WorkerSearchComponent,
         ConfirmationDialogComponent,
+        WorkerInputDialogComponent,
+        WorkersTableComponent,
+        AgePipe,
     ],
     imports: [
         BrowserModule,

@@ -1,7 +1,7 @@
 {
     "USERS_TABLE": {
         "FULLNAME": "Imie i Nazwisko",
-        "DOB": "Data Urodzenia",
+        "DOB": "Wiek",
         "PANEL": "Opcje"
     },
     "USER_SEARCH": {
@@ -9,20 +9,39 @@
         "LOADING": "Ładowanie...",
         "NO_USER": "Nie znaleziono..."
     },
+    "USER_INPUT": {
+        "NAME": "Imie",
+        "SURNAME": "Nazwisko",
+        "DOB": "Data Urodzenia"
+    },
+    "USER_CREATE": {
+        "TITLE": "Rejestracja nowego pracownika",
+        "ACTION": "Zarejestruj"
+    },
+    "USER_UPDATE": {
+        "TITLE": "Edycja pracownika",
+        "ACTION": "Zaktualizuj"
+    },
     "CONFIRMATION_DIALOG": {
         "CANCEL": "Anuluj"
     },
     "CONFIRMATION_DIALOG_USER_DELETE": {
         "ACTION": "Usuń",
         "TITLE": "Potwierdzenie Usunięcia",
-        "MESSAGE": "Czy jesteś pewien że chcesz usunąć pracownika ?",
-        "SNACK_MESSAGE": "Pomyślnie usunięto pracownika"
+        "MESSAGE": "Czy jesteś pewien że chcesz usunąć pracownika ?"
     },
     "SNACK_BAR": {
         "CLOSE": "Zamknij"
     },
+    "SUCCESS": {
+        "USER_DELETE": "Pomyślnie usunięto pracownika",
+        "USER_ADD": "Pomyślnie dodano pracownika",
+        "USER_EDIT": "Edycja pracownika przebiegła pomyślnie"
+    },
     "ERROR": {
-        "USERS_GETTING_ERROR": "Pobieranie przcowników z bazy nie powiodło się, przepraszamy",
-        "USER_DELETE_ERROR": "Niestety coś nie wyszło, przepraszamy"
+        "USERS_GETTING_ERROR": "Pobieranie pracowników z bazy nie powiodło się, przepraszamy",
+        "USER_DELETE_ERROR": "Niestety usuwanie pracownika się nie powiodło, przepraszamy",
+        "USER_EDIT_ERROR": "Niestety edycja się nie powiodła, przepraszamy",
+        "USER_ADD_ERROR": "Coś poszło nie tak podczas dodawania pracownika, przepraszamy"
     }
 }
