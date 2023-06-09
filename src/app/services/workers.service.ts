@@ -32,14 +32,14 @@ export class WorkersService {
         return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 
-    editWorker(data: Worker, id: number): Observable<Array<Worker>> {
+    editWorker(data: Worker): Observable<Worker> {
         const body = {
             edit: true,
             newName: data.name,
             newSurName: data.surname,
-            Id: id,
+            Id: data.id,
         };
-        return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
+        return this.http.post<Worker>(`${this.apiUrl}`, body);
     }
 
     deleteWorker(data: number): Observable<Array<Worker>> {

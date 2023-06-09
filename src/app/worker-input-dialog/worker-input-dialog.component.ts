@@ -58,9 +58,10 @@ export class WorkerInputDialogComponent implements OnInit {
     addEmployer() {
         const worker = this.registerForm.value;
         if (this.isEdit) {
-            this.workersService.editWorker(worker, this.workerId).subscribe({
-                next: () => {
-                    this.dialogRef.close();
+            worker.id = this.data.worker.id;
+            this.workersService.editWorker(worker).subscribe({
+                next: (update: Worker) => {
+                    this.dialogRef.close(update);
                 },
                 error: (err) => {
                     console.log(err);
