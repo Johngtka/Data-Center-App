@@ -41,7 +41,7 @@ export class WorkerSearchComponent implements OnInit {
                     this.isLoading = true;
                 }),
             )
-            .subscribe((user: string) => {
+            .subscribe((user: Worker) => {
                 this.workerService
                     .searchWorker(user)
                     .subscribe({

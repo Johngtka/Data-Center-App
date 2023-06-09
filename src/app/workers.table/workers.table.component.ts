@@ -72,6 +72,7 @@ export class WorkersTableComponent implements OnInit {
                     next: (data) => {
                         this.dataSource = new MatTableDataSource<Worker>(data);
                         this.isLoadingResults = false;
+                        this.workersID = [];
                     },
                     error: (err) => {
                         this.snackService.showSnackBar(

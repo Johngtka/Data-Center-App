@@ -17,19 +17,19 @@ export class WorkersService {
         return this.http.get<Array<Worker>>(`${this.apiUrl}`);
     }
 
-    searchWorker(data: string): Observable<Array<Worker>> {
+    searchWorker(data: Worker): Observable<Array<Worker>> {
         const body = { find: true, name: data };
         return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
     }
 
-    newWorker(data: Worker): Observable<Array<Worker>> {
+    newWorker(data: Worker): Observable<Worker> {
         const body = {
             new: true,
             name: data.name,
             surName: data.surname,
             dob: data.dob,
         };
-        return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
+        return this.http.post<Worker>(`${this.apiUrl}`, body);
     }
 
     editWorker(data: Worker): Observable<Worker> {
@@ -42,8 +42,8 @@ export class WorkersService {
         return this.http.post<Worker>(`${this.apiUrl}`, body);
     }
 
-    deleteWorker(data: number): Observable<Array<Worker>> {
+    deleteWorker(data: number): Observable<Worker> {
         const body = { del: true, workerId: data };
-        return this.http.post<Array<Worker>>(`${this.apiUrl}`, body);
+        return this.http.post<Worker>(`${this.apiUrl}`, body);
     }
 }
