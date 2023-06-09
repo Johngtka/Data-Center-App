@@ -26,12 +26,14 @@ export class WorkerInputDialogComponent implements OnInit {
     buttonText!: string;
     registerForm!: FormGroup;
     originalFormValues!: Worker;
+    workerId!: number;
 
     ngOnInit(): void {
         if (this.data?.worker) {
             this.isEdit = true;
             this.buttonText = 'USER_UPDATE.ACTION';
             this.titleText = 'USER_UPDATE.TITLE';
+            this.workerId = this.data.worker.id;
             this.registerForm = new FormGroup({
                 name: new FormControl(this.data.worker.name, [
                     Validators.required,
@@ -55,18 +57,25 @@ export class WorkerInputDialogComponent implements OnInit {
 
     addEmployer() {
         const worker = this.registerForm.value;
-        this.workersService.newWorker(worker).subscribe({
-            next: (newEmployer) => {
-                this.dialogRef.close(newEmployer);
-            },
-            error: (err) => {
-                console.log(err);
-            },
-        });
-        // if (this.isEdit) {
-        // } else {
-
-        // }
+        if (this.isEdit) {
+            this.workersService.editWorker(worker, this.workerId).subscribe({
+                next: () => {
+                    this.dialogRef.close();
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+        } else {
+            this.workersService.newWorker(worker).subscribe({
+                next: (newEmployer) => {
+                    this.dialogRef.close(newEmployer);
+                },
+                error: (err) => {
+                    console.log(err);
+                },
+            });
+        }
     }
 
     hasChange() {
