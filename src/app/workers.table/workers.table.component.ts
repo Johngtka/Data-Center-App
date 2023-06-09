@@ -106,7 +106,7 @@ export class WorkersTableComponent implements OnInit {
                             this.worker,
                         );
                         this.snackService.showSnackBar(
-                            'CONFIRMATION_DIALOG_USER_DELETE.SNACK_MESSAGE',
+                            'SUCCESS.USER_DELETE',
                             SNACK_TYPE.success,
                         );
                         this.workersID = [];
