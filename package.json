@@ -6,11 +6,8 @@
         "start": "ng serve",
         "build": "ng build",
         "prebuild": "standard-version",
-        "postbuild": "git push --follow-tags",
-        "watch": "ng build --watch --configuration development",
         "format": "prettier --write ./**/*.{ts,json,html,css}",
         "test": "ng test",
-        "prepare": "husky install",
         "update": "npm update",
         "frameupdate": "ng update"
     },
