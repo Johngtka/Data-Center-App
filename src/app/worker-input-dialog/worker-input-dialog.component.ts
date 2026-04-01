@@ -12,6 +12,7 @@ import { WorkersService } from '../services/workers.service';
     selector: 'app-worker-input-dialog',
     templateUrl: './worker-input-dialog.component.html',
     styleUrls: ['./worker-input-dialog.component.css'],
+    standalone: false,
 })
 export class WorkerInputDialogComponent implements OnInit {
     constructor(

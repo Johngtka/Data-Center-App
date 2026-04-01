@@ -15,6 +15,7 @@ import { WorkersService } from '../services/workers.service';
     selector: 'app-worker-search',
     templateUrl: './worker.search.component.html',
     styleUrls: ['./worker.search.component.css'],
+    standalone: false,
 })
 export class WorkerSearchComponent implements OnInit {
     constructor(private workerService: WorkersService) {}

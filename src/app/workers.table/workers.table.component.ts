@@ -16,6 +16,7 @@ import {
     selector: 'app-workers-table',
     templateUrl: './workers.table.component.html',
     styleUrls: ['./workers.table.component.css'],
+    standalone: false,
 })
 export class WorkersTableComponent implements OnInit {
     constructor(

@@ -1,55 +1,55 @@
 {
-    "name": "data-center-app",
-    "version": "0.0.2",
-    "scripts": {
-        "ng": "ng",
-        "start": "ng serve",
-        "build": "ng build",
-        "prebuild": "standard-version",
-        "format": "prettier --write ./**/*.{ts,json,html,css}",
-        "test": "ng test",
-        "update": "npm update",
-        "frameupdate": "ng update"
-    },
-    "private": true,
-    "dependencies": {
-        "@angular/animations": "^18.2.14",
-        "@angular/cdk": "^18.2.14",
-        "@angular/common": "^18.2.14",
-        "@angular/compiler": "^18.2.14",
-        "@angular/core": "^18.2.14",
-        "@angular/forms": "^18.2.14",
-        "@angular/material": "^18.2.14",
-        "@angular/platform-browser": "^18.2.14",
-        "@angular/platform-browser-dynamic": "^18.2.14",
-        "@angular/router": "^18.2.14",
-        "@ngx-translate/core": "^15.0.0",
-        "@ngx-translate/http-loader": "^8.0.0",
-        "date-fns": "^2.30.0",
-        "prettier": "^3.8.1",
-        "rxjs": "~7.8.0",
-        "standard-version": "^9.5.0",
-        "tslib": "^2.3.0",
-        "zone.js": "~0.14.10"
-    },
-    "devDependencies": {
-        "@angular-devkit/build-angular": "^18.2.21",
-        "@angular/cli": "~18.2.21",
-        "@angular/compiler-cli": "^18.2.14",
-        "@types/jasmine": "~4.3.0",
-        "husky": "^8.0.3",
-        "jasmine-core": "~4.5.0",
-        "karma": "~6.4.0",
-        "karma-chrome-launcher": "~3.1.0",
-        "karma-coverage": "~2.2.0",
-        "karma-jasmine": "~5.1.0",
-        "karma-jasmine-html-reporter": "~2.0.0",
-        "lint-staged": "^13.2.2",
-        "typescript": "~5.4.5"
-    },
-    "lint-staged": {
-        "*.ts": [
-            "prettier --write"
-        ]
-    }
+  "name": "data-center-app",
+  "version": "0.0.2",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "prebuild": "standard-version",
+    "format": "prettier --write ./**/*.{ts,json,html,css}",
+    "test": "ng test",
+    "update": "npm update",
+    "frameupdate": "ng update"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "^19.2.20",
+    "@angular/cdk": "^18.2.14",
+    "@angular/common": "^19.2.20",
+    "@angular/compiler": "^19.2.20",
+    "@angular/core": "^19.2.20",
+    "@angular/forms": "^19.2.20",
+    "@angular/material": "^18.2.14",
+    "@angular/platform-browser": "^19.2.20",
+    "@angular/platform-browser-dynamic": "^19.2.20",
+    "@angular/router": "^19.2.20",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
+    "date-fns": "^2.30.0",
+    "prettier": "^3.8.1",
+    "rxjs": "~7.8.0",
+    "standard-version": "^9.5.0",
+    "tslib": "^2.3.0",
+    "zone.js": "~0.15.1"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^19.2.23",
+    "@angular/cli": "~19.2.23",
+    "@angular/compiler-cli": "^19.2.20",
+    "@types/jasmine": "~4.3.0",
+    "husky": "^8.0.3",
+    "jasmine-core": "~4.5.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "lint-staged": "^13.2.2",
+    "typescript": "~5.8.3"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --write"
+    ]
+  }
 }

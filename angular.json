@@ -11,16 +11,18 @@
             "prefix": "app",
             "architect": {
                 "build": {
-                    "builder": "@angular-devkit/build-angular:browser",
+                    "builder": "@angular-devkit/build-angular:application",
                     "options": {
-                        "outputPath": "dist/data-center-app",
+                        "outputPath": {
+                          "base": "dist/data-center-app"
+                        },
                         "index": "src/index.html",
-                        "main": "src/main.ts",
                         "polyfills": ["zone.js"],
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
                         "styles": ["src/custom-theme.scss", "src/styles.css"],
-                        "scripts": []
+                        "scripts": [],
+                        "browser": "src/main.ts"
                     },
                     "configurations": {
                         "production": {
@@ -39,9 +41,7 @@
                             "outputHashing": "all"
                         },
                         "development": {
-                            "buildOptimizer": false,
-                            "optimization": false,
-                            "vendorChunk": true,
+                          "optimization": false,
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true
@@ -53,10 +53,10 @@
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "configurations": {
                         "production": {
-                            "browserTarget": "Data-Center-App:build:production"
+                          "buildTarget": "Data-Center-App:build:production"
                         },
                         "development": {
-                            "browserTarget": "Data-Center-App:build:development"
+                          "buildTarget": "Data-Center-App:build:development"
                         }
                     },
                     "defaultConfiguration": "development"
@@ -64,7 +64,7 @@
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "Data-Center-App:build"
+                      "buildTarget": "Data-Center-App:build"
                     }
                 },
                 "test": {
