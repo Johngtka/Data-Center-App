@@ -1,48 +1,46 @@
 <div>
-  <mat-form-field>
-    <input
-      matInput
-      placeholder="{{ 'USER_SEARCH.INPUT' | translate }}"
-      [matAutocomplete]="auto"
-      [formControl]="searchUserCtrl"
-      />
-    @if (searchUserCtrl.value) {
-      <button
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="clearSelection()"
-        >
-        <mat-icon>close</mat-icon>
-      </button>
-    }
-    <mat-autocomplete
-      #auto="matAutocomplete"
-      (optionSelected)="onSelected()"
-      >
-      @if (isLoading) {
-        <mat-option class="is-loading">{{
-          'USER_SEARCH.LOADING' | translate
-        }}</mat-option>
-      }
-      @if (!noEmployeeAlert) {
-        <mat-option class="is-loading">{{
-          'USER_SEARCH.NO_USER' | translate
-        }}</mat-option>
-      }
-      @if (!isLoading) {
-        @for (user of filteredUsers; track user) {
-          <mat-option
-            [value]="user.name + ' ' + user.surname"
+    <mat-form-field>
+        <input
+            matInput
+            placeholder="{{ 'USER_SEARCH.INPUT' | translate }}"
+            [matAutocomplete]="auto"
+            [formControl]="searchUserCtrl"
+        />
+        @if (searchUserCtrl.value) {
+            <button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clearSelection()"
             >
-            <span>{{ user.name + ' ' + user.surname }}</span>
-          </mat-option>
+                <mat-icon>close</mat-icon>
+            </button>
         }
-      }
-    </mat-autocomplete>
-    <br />
-    @if (errorMsg) {
-      {{ errorMsg }}
-    }
-  </mat-form-field>
+        <mat-autocomplete
+            #auto="matAutocomplete"
+            (optionSelected)="onSelected()"
+        >
+            @if (isLoading) {
+                <mat-option class="is-loading">{{
+                    'USER_SEARCH.LOADING' | translate
+                }}</mat-option>
+            }
+            @if (!noEmployeeAlert) {
+                <mat-option class="is-loading">{{
+                    'USER_SEARCH.NO_USER' | translate
+                }}</mat-option>
+            }
+            @if (!isLoading) {
+                @for (user of filteredUsers; track user) {
+                    <mat-option [value]="user.name + ' ' + user.surname">
+                        <span>{{ user.name + ' ' + user.surname }}</span>
+                    </mat-option>
+                }
+            }
+        </mat-autocomplete>
+        <br />
+        @if (errorMsg) {
+            {{ errorMsg }}
+        }
+    </mat-form-field>
 </div>
