@@ -42,24 +42,25 @@ export class WorkerSearchComponent implements OnInit {
                 }),
             )
             .subscribe((user: Worker) => {
-                this.workerService
-                    .searchWorker(user)
-                    .subscribe({
-                        next: (data: Array<Worker>) => {
-                            if (data.length >= 1) {
-                                this.filteredUsers = data;
-                                this.selectedWorker = true;
-                            } else {
-                                this.noEmployeeAlert = false;
-                            }
-                        },
-                        error: (err) => {
-                            console.log('error:', err);
-                        },
-                    })
-                    .add(() => {
-                        this.isLoading = false;
-                    });
+                //     this.workerService
+                //         .searchWorker(user)
+                //         .subscribe({
+                //             next: (data: Array<Worker>) => {
+                //                 if (data.length >= 1) {
+                //                     this.filteredUsers = data;
+                //                     this.selectedWorker = true;
+                //                 } else {
+                //                     this.noEmployeeAlert = false;
+                //                 }
+                //             },
+                //             error: (err) => {
+                //                 console.log('error:', err);
+                //             },
+                //         })
+                //         .add(() => {
+                //             this.isLoading = false;
+                //         });
+                // };
             });
     }
     displayWith(value: any) {

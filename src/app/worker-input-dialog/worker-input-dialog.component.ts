@@ -59,39 +59,39 @@ export class WorkerInputDialogComponent implements OnInit {
         const worker = this.registerForm.value;
         if (this.isEdit) {
             worker.id = this.data.worker.id;
-            this.workersService.editWorker(worker).subscribe({
-                next: (update: Worker) => {
-                    this.dialogRef.close(update);
-                    this.snackService.showSnackBar(
-                        'SUCCESS.USER_EDIT',
-                        SNACK_TYPE.success,
-                    );
-                },
-                error: (err) => {
-                    console.log(err);
-                    this.snackService.showSnackBar(
-                        'ERROR.USER_EDIT_ERROR',
-                        SNACK_TYPE.error,
-                    );
-                },
-            });
+            // this.workersService.editWorker(worker).subscribe({
+            //     next: (update: Worker) => {
+            //         this.dialogRef.close(update);
+            //         this.snackService.showSnackBar(
+            //             'SUCCESS.USER_EDIT',
+            //             SNACK_TYPE.success,
+            //         );
+            //     },
+            //     error: (err) => {
+            //         console.log(err);
+            //         this.snackService.showSnackBar(
+            //             'ERROR.USER_EDIT_ERROR',
+            //             SNACK_TYPE.error,
+            //         );
+            //     },
+            // });
         } else {
-            this.workersService.newWorker(worker).subscribe({
-                next: (newEmployer) => {
-                    this.dialogRef.close(newEmployer);
-                    this.snackService.showSnackBar(
-                        'SUCCESS.USER_ADD',
-                        SNACK_TYPE.success,
-                    );
-                },
-                error: (err) => {
-                    console.log(err);
-                    this.snackService.showSnackBar(
-                        'ERROR.USER_ADD_ERROR',
-                        SNACK_TYPE.error,
-                    );
-                },
-            });
+            // this.workersService.newWorker(worker).subscribe({
+            //     next: (newEmployer) => {
+            //         this.dialogRef.close(newEmployer);
+            //         this.snackService.showSnackBar(
+            //             'SUCCESS.USER_ADD',
+            //             SNACK_TYPE.success,
+            //         );
+            //     },
+            //     error: (err) => {
+            //         console.log(err);
+            //         this.snackService.showSnackBar(
+            //             'ERROR.USER_ADD_ERROR',
+            //             SNACK_TYPE.error,
+            //         );
+            //     },
+            // });
         }
     }
 

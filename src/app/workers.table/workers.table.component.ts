@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material/dialog';
-import {
-    MatTableDataSource,
-    MatTableDataSourcePaginator,
-} from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { Worker } from '../models/worker';
 import { WorkersService } from '../services/workers.service';
@@ -28,26 +25,26 @@ export class WorkersTableComponent implements OnInit {
     ) {}
 
     worker!: Worker[];
-    dataSource!: MatTableDataSource<Worker, MatTableDataSourcePaginator>;
+    dataSource!: MatTableDataSource<Worker>;
     isLoadingResults = true;
     workersID: number[] = [];
     displayedColumns: string[] = ['id', 'fullName', 'dob', 'panel'];
 
     ngOnInit(): void {
-        this.workersService.getWorkers().subscribe({
-            next: (data) => {
-                this.worker = data;
-                this.dataSource = new MatTableDataSource<Worker>(this.worker);
-                this.isLoadingResults = false;
-            },
-            error: (err) => {
-                this.snackService.showSnackBar(
-                    'ERROR.USERS_GETTING_ERROR',
-                    SNACK_TYPE.error,
-                );
-                console.log(err);
-            },
-        });
+        // this.workersService.getWorkers().subscribe({
+        //     next: (data) => {
+        //         this.worker = data;
+        //         this.dataSource = new MatTableDataSource<Worker>(this.worker);
+        //         this.isLoadingResults = false;
+        //     },
+        //     error: (err) => {
+        //         this.snackService.showSnackBar(
+        //             'ERROR.USERS_GETTING_ERROR',
+        //             SNACK_TYPE.error,
+        //         );
+        //         console.log(err);
+        //     },
+        // });
     }
     clickedRow(row: Worker): void {
         const ID = this.workersID.indexOf(row.id);
@@ -68,20 +65,20 @@ export class WorkersTableComponent implements OnInit {
         dialogRef.afterClosed().subscribe((result) => {
             if (result) {
                 this.updateTable(result);
-                this.workersService.getWorkers().subscribe({
-                    next: (data) => {
-                        this.dataSource = new MatTableDataSource<Worker>(data);
-                        this.isLoadingResults = false;
-                        this.workersID = [];
-                    },
-                    error: (err) => {
-                        this.snackService.showSnackBar(
-                            'ERROR.USERS_GETTING_ERROR',
-                            SNACK_TYPE.error,
-                        );
-                        console.log(err);
-                    },
-                });
+                // this.workersService.getWorkers().subscribe({
+                //     next: (data) => {
+                //         this.dataSource = new MatTableDataSource<Worker>(data);
+                //         this.isLoadingResults = false;
+                //         this.workersID = [];
+                //     },
+                //     error: (err) => {
+                //         this.snackService.showSnackBar(
+                //             'ERROR.USERS_GETTING_ERROR',
+                //             SNACK_TYPE.error,
+                //         );
+                //         console.log(err);
+                //     },
+                // });
             }
         });
     }
@@ -97,42 +94,42 @@ export class WorkersTableComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe((req) => {
             if (req === ConfirmationDialogResponse.OK) {
-                this.workersService.deleteWorker(worker.id).subscribe({
-                    next: () => {
-                        this.worker = this.worker.filter(
-                            (ds: Worker) => ds.id !== worker.id,
-                        );
-                        this.dataSource = new MatTableDataSource<Worker>(
-                            this.worker,
-                        );
-                        this.snackService.showSnackBar(
-                            'SUCCESS.USER_DELETE',
-                            SNACK_TYPE.success,
-                        );
-                        this.workersID = [];
-                        this.workersService.getWorkers().subscribe({
-                            next: (data) => {
-                                this.dataSource =
-                                    new MatTableDataSource<Worker>(data);
-                                this.isLoadingResults = false;
-                            },
-                            error: (err) => {
-                                console.log(err);
-                                this.snackService.showSnackBar(
-                                    'ERROR.USERS_GETTING_ERROR',
-                                    SNACK_TYPE.error,
-                                );
-                            },
-                        });
-                    },
-                    error: (err) => {
-                        console.log(err);
-                        this.snackService.showSnackBar(
-                            'ERROR.USER_DELETE_ERROR',
-                            SNACK_TYPE.error,
-                        );
-                    },
-                });
+                // this.workersService.deleteWorker(worker.id).subscribe({
+                //     next: () => {
+                //         this.worker = this.worker.filter(
+                //             (ds: Worker) => ds.id !== worker.id,
+                //         );
+                //         this.dataSource = new MatTableDataSource<Worker>(
+                //             this.worker,
+                //         );
+                //         this.snackService.showSnackBar(
+                //             'SUCCESS.USER_DELETE',
+                //             SNACK_TYPE.success,
+                //         );
+                //         this.workersID = [];
+                //         this.workersService.getWorkers().subscribe({
+                //             next: (data) => {
+                //                 this.dataSource =
+                //                     new MatTableDataSource<Worker>(data);
+                //                 this.isLoadingResults = false;
+                //             },
+                //             error: (err) => {
+                //                 console.log(err);
+                //                 this.snackService.showSnackBar(
+                //                     'ERROR.USERS_GETTING_ERROR',
+                //                     SNACK_TYPE.error,
+                //                 );
+                //             },
+                //         });
+                //     },
+                //     error: (err) => {
+                //         console.log(err);
+                //         this.snackService.showSnackBar(
+                //             'ERROR.USER_DELETE_ERROR',
+                //             SNACK_TYPE.error,
+                //         );
+                //     },
+                // });
             }
         });
     }
