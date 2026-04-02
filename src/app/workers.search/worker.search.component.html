@@ -6,37 +6,41 @@
             [matAutocomplete]="auto"
             [formControl]="searchUserCtrl"
         />
-        <button
-            *ngIf="searchUserCtrl.value"
-            matSuffix
-            mat-icon-button
-            aria-label="Clear"
-            (click)="clearSelection()"
-        >
-            <mat-icon>close</mat-icon>
-        </button>
+        @if (searchUserCtrl.value) {
+            <button
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clearSelection()"
+            >
+                <mat-icon>close</mat-icon>
+            </button>
+        }
         <mat-autocomplete
             #auto="matAutocomplete"
             (optionSelected)="onSelected()"
         >
-            <mat-option *ngIf="isLoading" class="is-loading">{{
-                'USER_SEARCH.LOADING' | translate
-            }}</mat-option>
-            <mat-option *ngIf="!noEmployeeAlert" class="is-loading">{{
-                'USER_SEARCH.NO_USER' | translate
-            }}</mat-option>
-            <ng-container *ngIf="!isLoading">
-                <mat-option
-                    *ngFor="let user of filteredUsers"
-                    [value]="user.name + ' ' + user.surname"
-                >
-                    <span>{{ user.name + ' ' + user.surname }}</span>
-                </mat-option>
-            </ng-container>
+            @if (isLoading) {
+                <mat-option class="is-loading">{{
+                    'USER_SEARCH.LOADING' | translate
+                }}</mat-option>
+            }
+            @if (!noEmployeeAlert) {
+                <mat-option class="is-loading">{{
+                    'USER_SEARCH.NO_USER' | translate
+                }}</mat-option>
+            }
+            @if (!isLoading) {
+                @for (user of filteredUsers; track user) {
+                    <mat-option [value]="user.name + ' ' + user.surname">
+                        <span>{{ user.name + ' ' + user.surname }}</span>
+                    </mat-option>
+                }
+            }
         </mat-autocomplete>
         <br />
-        <ng-container *ngIf="errorMsg">
+        @if (errorMsg) {
             {{ errorMsg }}
-        </ng-container>
+        }
     </mat-form-field>
 </div>

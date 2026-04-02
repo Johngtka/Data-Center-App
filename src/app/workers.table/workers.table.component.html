@@ -37,26 +37,32 @@
             *matCellDef="let element"
             (click)="workersID.push(element.id)"
         >
-            <span
-                *ngIf="workersID.length >= 1 && workersID.includes(element.id)"
-            >
-                <button mat-mini-fab class="edit" (click)="openDialog(element)">
-                    <mat-icon class="mat-18">edit</mat-icon>
-                </button>
-                <button
-                    mat-mini-fab
-                    color="warn"
-                    (click)="deleteEmployer(element)"
-                >
-                    <mat-icon class="mat-18">delete</mat-icon>
-                </button>
-            </span>
+            @if (workersID.length >= 1 && workersID.includes(element.id)) {
+                <span>
+                    <button
+                        mat-mini-fab
+                        class="edit"
+                        (click)="openDialog(element)"
+                    >
+                        <mat-icon class="mat-18">edit</mat-icon>
+                    </button>
+                    <button
+                        mat-mini-fab
+                        color="warn"
+                        (click)="deleteEmployer(element)"
+                    >
+                        <mat-icon class="mat-18">delete</mat-icon>
+                    </button>
+                </span>
+            }
         </td>
     </ng-container>
 </table>
-<div class="loader-container" *ngIf="isLoadingResults">
-    <mat-spinner></mat-spinner>
-</div>
+@if (isLoadingResults) {
+    <div class="loader-container">
+        <mat-spinner></mat-spinner>
+    </div>
+}
 <button
     mat-mini-fab
     color="primary"

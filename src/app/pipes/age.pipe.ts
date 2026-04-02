@@ -4,6 +4,7 @@ import { differenceInYears } from 'date-fns';
 
 @Pipe({
     name: 'age',
+    standalone: false,
 })
 export class AgePipe implements PipeTransform {
     transform(age: number) {

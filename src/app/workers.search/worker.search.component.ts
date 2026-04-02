@@ -15,6 +15,7 @@ import { WorkersService } from '../services/workers.service';
     selector: 'app-worker-search',
     templateUrl: './worker.search.component.html',
     styleUrls: ['./worker.search.component.css'],
+    standalone: false,
 })
 export class WorkerSearchComponent implements OnInit {
     constructor(private workerService: WorkersService) {}
@@ -42,24 +43,25 @@ export class WorkerSearchComponent implements OnInit {
                 }),
             )
             .subscribe((user: Worker) => {
-                this.workerService
-                    .searchWorker(user)
-                    .subscribe({
-                        next: (data: Array<Worker>) => {
-                            if (data.length >= 1) {
-                                this.filteredUsers = data;
-                                this.selectedWorker = true;
-                            } else {
-                                this.noEmployeeAlert = false;
-                            }
-                        },
-                        error: (err) => {
-                            console.log('error:', err);
-                        },
-                    })
-                    .add(() => {
-                        this.isLoading = false;
-                    });
+                //     this.workerService
+                //         .searchWorker(user)
+                //         .subscribe({
+                //             next: (data: Array<Worker>) => {
+                //                 if (data.length >= 1) {
+                //                     this.filteredUsers = data;
+                //                     this.selectedWorker = true;
+                //                 } else {
+                //                     this.noEmployeeAlert = false;
+                //                 }
+                //             },
+                //             error: (err) => {
+                //                 console.log('error:', err);
+                //             },
+                //         })
+                //         .add(() => {
+                //             this.isLoading = false;
+                //         });
+                // };
             });
     }
     displayWith(value: any) {

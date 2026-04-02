@@ -8,15 +8,19 @@
                     <mat-label>{{ 'USER_INPUT.NAME' | translate }}</mat-label>
                     <input matInput formControlName="name" tabindex="1"
                 /></mat-form-field>
-                <mat-form-field *ngIf="!isEdit" appearance="fill">
-                    <mat-label>{{ 'USER_INPUT.DOB' | translate }}</mat-label>
-                    <input
-                        matInput
-                        type="date"
-                        formControlName="dob"
-                        tabindex="3"
-                    />
-                </mat-form-field>
+                @if (!isEdit) {
+                    <mat-form-field appearance="fill">
+                        <mat-label>{{
+                            'USER_INPUT.DOB' | translate
+                        }}</mat-label>
+                        <input
+                            matInput
+                            type="date"
+                            formControlName="dob"
+                            tabindex="3"
+                        />
+                    </mat-form-field>
+                }
             </div>
             <div class="col">
                 <mat-form-field appearance="fill">

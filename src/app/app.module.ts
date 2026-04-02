@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+    HttpClient,
+    provideHttpClient,
+    withInterceptorsFromDi,
+} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -60,10 +64,10 @@ const materialsModules = [
         WorkersTableComponent,
         AgePipe,
     ],
+    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule,
         BrowserAnimationsModule,
         TranslateModule.forRoot({
             defaultLanguage: lang,
@@ -77,7 +81,6 @@ const materialsModules = [
         ReactiveFormsModule,
         ...materialsModules,
     ],
-    providers: [WorkersService],
-    bootstrap: [AppComponent],
+    providers: [WorkersService, provideHttpClient(withInterceptorsFromDi())],
 })
 export class AppModule {}

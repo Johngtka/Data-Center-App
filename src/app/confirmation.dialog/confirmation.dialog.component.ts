@@ -11,6 +11,7 @@ export enum ConfirmationDialogResponse {
     selector: 'app-confirmation.dialog',
     templateUrl: './confirmation.dialog.component.html',
     styleUrls: ['./confirmation.dialog.component.css'],
+    standalone: false,
 })
 export class ConfirmationDialogComponent {
     constructor(
